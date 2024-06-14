@@ -7,11 +7,15 @@
 
 int thread_create(void (*fcn)(void *, void *), void *arg1, void *arg2) {
     void *stack = malloc(PGSIZE * 2);
+    if(stack == 0) {
+        return -1;
+    }
     if((uint)stack % PGSIZE)
         stack = stack + (PGSIZE - (uint)stack % PGSIZE);
     int tid = clone(fcn, arg1, arg2, stack);
-    if(tid == -1)
+    if(tid == -1) {
         free(stack);
+    }
     return tid;
 }
 

@@ -24,6 +24,7 @@ int main(){
         printf(1, "Error: thread did not set value correctly\n");
         exit();
     }
+    printf(1, "Value of a: %d\n", a);  // a의 값을 출력
     printf(1, "Test passed\n");
     exit();
 }
