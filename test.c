@@ -3,9 +3,9 @@
 #include "user.h"
 #include "thread.h"
 
-void wrapper(void *arg){
+void wrapper(void *arg1, void *arg2){
     int new = 100;
-    *(int *)arg = new;
+    *(int *)arg1 = new;
 }
 
 int main(){

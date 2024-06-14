@@ -49,7 +49,19 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+    void *stack;
 };
+
+
+// 추가 함수
+int clone(void (*fcn)(void *, void *), void *arg1, void *arg2, void *stack);
+int join(void **stack);
+
+// 기존 함수
+void wakeup(void *chan);
+int thread_create(void (*fcn)(void *, void *), void *arg1, void *arg2);
+int thread_join(void);
+void procdump(void);
 
 // Process memory is laid out contiguously, low addresses first:
 //   text
